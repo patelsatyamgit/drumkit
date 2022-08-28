@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drumkit</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="key" data-key="65">
+            <kbd>A</kbd>
+            <SPan>CLAP</SPan>
+        </div>
+        <div class="key" data-key="83">
+            <kbd>S</kbd>
+            <span>HIHAT</span>
+        </div>
+        <div class="key" data-key="68">
+            <kbd>D</kbd>
+            <span>KICK</span>
+        </div>
+        <div class="key" data-key="70">
+            <kbd>F</kbd>
+            <SPan>OPENHAT</SPan>
+        </div>
+        <div class="key" data-key="71">
+            <kbd>G</kbd>
+            <SPan>BOOM</SPan>
+        </div>
+        <div class="key" data-key="72">
+            <kbd>H</kbd>
+            <SPan>RIDE</SPan>
+        </div>
+        <div class="key" data-key="74">
+            <kbd>J</kbd>
+            <SPan>SNARE</SPan>
+        </div>
+        <div class="key" data-key="75">
+            <kbd>K</kbd>
+            <SPan>TOM</SPan>
+        </div>
+        <div class="key" data-key="76">
+            <kbd>L</kbd>
+            <SPan>TINK</SPan>
+        </div>
+    </div>
+    <audio data-key="65" src="audio/107_Rims_SP_13_03.wav"></audio>
+    <audio data-key="83" src="audio/128_Fm_PitbullBass_05_544.wav"></audio>
+    <audio data-key="68" src="audio/140_MightDrums_798.wav"></audio>
+    <audio data-key="70" src="audio/168_Gm_SturdyTabla_01_697.wav"></audio>
+    <audio data-key="71" src="audio/90_016_Mic3_DeskDist_266_SP.wav"></audio>
+    <audio data-key="72" src="audio/Fm_WaterCycleFX_01_679.wav"></audio>
+    <audio data-key="74" src="audio/Hats_295_SP_05.wav"></audio>
+    <audio data-key="75" src="audio/PercStab_02_207_SP.wav"></audio>
+    <audio data-key="76" src="audio/SmashThat_288_SP.wav"></audio>
+    <script>
+        window.addEventListener("keydown", (e)=>{
+                var audio=document.querySelector( `audio[data-key="${e.keyCode}"]`);
+                var key=document.querySelector(`.key[data-key="${e.keyCode}"`);
+                if(audio)
+                {
+                   
+                    audio.play();
+                    audio.currentTime=0;
+                    key.classList.add("playing");
+                }
+                return;
+
+        })
+        var ll=document.querySelectorAll(".key");
+        ll.forEach((element) => {
+            element.addEventListener("transitionend",remove)
+        });
+        function remove(k)
+        {
+            if(k.propertyName="trasform")
+            {
+            this.classList.remove("playing");
+            }
+            return;
+        }
+        
+    </script>
+</body>
+</html>
